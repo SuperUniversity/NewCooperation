@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="superuniversityModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EmployerCompany">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyAdress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployerPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployerMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyUserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="ImageWebSite" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyID" Type="int" Nullable="false" />
+    <Property Name="JobStartTime" Type="date" Nullable="false" />
+    <Property Name="TimeID" Type="int" Nullable="false" />
+    <Property Name="PayPerHour" Type="money" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Workplace" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="ImageWebSite" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="JobCommet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="JobID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobtime">
+    <Key>
+      <PropertyRef Name="TimeID" />
+    </Key>
+    <Property Name="TimeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="jobtimes" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'superuniversity.JobMarket.User' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserEmail" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="ConfirmPassword" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ControlType" Type="int" />
+  </EntityType>
+  <EntityContainer Name="superuniversityModel1StoreContainer">
+    <EntitySet Name="EmployerCompany" EntityType="Self.EmployerCompany" Schema="JobMarket" store:Type="Tables" />
+    <EntitySet Name="Job" EntityType="Self.Job" Schema="JobMarket" store:Type="Tables" />
+    <EntitySet Name="JobCommet" EntityType="Self.JobCommet" Schema="JobMarket" store:Type="Tables" />
+    <EntitySet Name="Jobtime" EntityType="Self.Jobtime" Schema="JobMarket" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="JobMarket">
+      <DefiningQuery>SELECT 
+    [User].[UserID] AS [UserID], 
+    [User].[UserName] AS [UserName], 
+    [User].[UserEmail] AS [UserEmail], 
+    [User].[Password] AS [Password], 
+    [User].[ConfirmPassword] AS [ConfirmPassword], 
+    [User].[ControlType] AS [ControlType]
+    FROM [JobMarket].[User] AS [User]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

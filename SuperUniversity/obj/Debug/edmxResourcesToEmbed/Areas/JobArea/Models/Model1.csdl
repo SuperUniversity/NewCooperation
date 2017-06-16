@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="superuniversityModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EmployerCompany">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployerMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImageWebSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="JobStartTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TimeID" Type="Int32" Nullable="false" />
+    <Property Name="PayPerHour" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Workplace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImageWebSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="JobCommet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="JobID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobtime">
+    <Key>
+      <PropertyRef Name="TimeID" />
+    </Key>
+    <Property Name="TimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="jobtimes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserEmail" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="ConfirmPassword" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ControlType" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="superuniversityEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EmployerCompany" EntityType="Self.EmployerCompany" />
+    <EntitySet Name="Job" EntityType="Self.Job" />
+    <EntitySet Name="JobCommet" EntityType="Self.JobCommet" />
+    <EntitySet Name="Jobtime" EntityType="Self.Jobtime" />
+    <EntitySet Name="User" EntityType="Self.User" />
+  </EntityContainer>
+</Schema>
